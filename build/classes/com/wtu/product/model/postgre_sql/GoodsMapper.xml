@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wtu.product.model.Goods">
+    <resultMap id="goodsMap" type="Goods">
+        <id column="goods_id" property="goodsId"/>
+        <result column="goods_name" property="goodsName"/>
+        <result column="picture" property="picture"/>
+        <result column="price" property="price"/>
+        <result column="unit" property="unit"/>
+        <result column="type" property="type"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="user_id" property="userId"/>
+        <result column="description" property="description"/>
+        <result column="is_deleted" property="isDeleted"/>
+    </resultMap>
+    <insert id="createGoods" parameterType="Goods" useGeneratedKeys="true" keyProperty="goodsId">
+        <![CDATA[
+            INSERT INTO
+                goods(goods_name, picture, price, unit, type,description,user_id,create_time,update_time)
+            VALUES
+                (#{goodsName}, #{picture}, #{price}, #{unit},#{type},#{description},#{userId}, Now(),Now())
+        ]]>
+    </insert>
+    <select id="getGoodsCount" resultType="Integer" parameterType="String">
+        <![CDATA[
+            SELECT
+                count(goods_id)
+            FROM
+                goods
+            WHERE
+                goods_name
+            LIKE
+                #{keyword}
+            AND
+                is_deleted = 0
+        ]]>
+    </select>
+    
+    <select id="getGoodsCountByUserId" resultType="Integer" parameterType="Integer">
+        <![CDATA[
+            SELECT
+                count(goods_id)
+            FROM
+                goods
+            WHERE
+                user_id = 3
+        ]]>
+    </select>
+    <select id="queryAllGoods" resultMap="goodsMap" parameterType="map">
+        <![CDATA[
+            SELECT 
+                a.pk_id, a.title, a.content_type_id, a.picture, a.content, a.modified, b.range_id, b.type_id
+            FROM
+                message AS a,age_content AS b 
+            WHERE 
+                a.content_type_id = b.id
+            AND
+                a.title 
+            LIKE
+                #{keyword}
+            AND
+                a.deleted = false
+            ORDER BY
+                a.modified DESC
+            LIMIT
+                #{pageSize}
+            OFFSET
+                #{offset}
+        ]]>
+    </select>
+    <select id="queryHotGoods" resultMap="goodsMap" parameterType="int">
+        <![CDATA[
+                SELECT 
+                  t.pk_id, t.title,  t.content_type_id, t.picture, t.content, substring_index(group_concat(t.modified),',',1) modified, t.range_id,  t.type_id, t.name
+                FROM(
+                    SELECT 
+                            a.pk_id, a.title, a.content_type_id, a.picture, a.content, a.modified, b.range_id, b.type_id, c.name
+                    FROM
+                            message AS a,age_content AS b,education_type AS c  
+                    WHERE 
+                            a.content_type_id = b.id
+                    AND
+                            b.type_id = c.id
+                    AND
+                            a.deleted = false
+                    ORDER BY type_id ASC,modified DESC
+                ) AS t
+                GROUP BY content_type_id
+        ]]>
+    </select>
+    <select id="queryGoodsByUserId" resultMap="goodsMap" parameterType="map">
+        <![CDATA[
+            SELECT 
+                    goods_id,goods_name, picture, price, unit, type_id,description,user_id,create_time,update_time
+            FROM
+                    goods  
+            WHERE
+                    is_deleted = false
+            AND
+                    user_id = #{userId}
+            ORDER BY update_time DESC
+            LIMIT
+                #{pageSize}
+            OFFSET
+                #{offset}
+        ]]>
+    </select>
+    <select id="getContentTypeId" resultType="Integer" parameterType="map">
+        <![CDATA[
+            SELECT
+                id
+            FROM
+                age_content
+            WHERE
+                range_id = #{age}
+            AND
+                type_id = #{type}
+        ]]>
+    </select>
+    <select id="getNewsById" parameterType="int" resultMap="goodsMap">
+        <![CDATA[
+            SELECT
+                a.pk_id, a.title, a.content_type_id, a.picture, a.content, a.modified, b.range_id, b.type_id, c.name
+            FROM
+                message AS a,age_content AS b,education_type AS c
+            WHERE
+                a.content_type_id = b.id
+            AND
+                b.type_id = c.id
+            AND
+                a.deleted = false
+            AND
+                a.pk_id = #{newsId}
+        ]]>
+    </select>
+    <select id="getNewsByType" parameterType="int" resultMap="goodsMap">
+        <![CDATA[
+            SELECT
+                a.pk_id, a.title, a.content_type_id, a.picture, a.content, a.modified, b.range_id, b.type_id, c.name
+            FROM
+                message AS a,age_content AS b,education_type AS c
+            WHERE
+                a.content_type_id = b.id
+            AND
+                b.type_id = c.id
+            AND
+                a.deleted = false
+            AND
+                b.type_id = #{typeId}
+            ORDER BY a.modified DESC
+        ]]>
+    </select>
+</mapper>

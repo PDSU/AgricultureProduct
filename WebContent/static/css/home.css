@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+.search {
+	width:400px;
+	height:40px;
+	border:1px solid #c0c0c0;
+	border-radius:3px;
+	line-height:85px;
+	position:absolute;
+	left:30%;
+	top:60px;
+}
+.search-input {
+	width:280px;
+    height:38px;
+    margin-left:0;
+    position:absolute;
+    border:none;
+    color:#000000;
+    font-size:16px;
+    padding-left:10px;
+}
+.search-button {
+    width:120px;
+    height:38px;
+    line-height:38px;
+    font-size:18px;
+    background-color:#004000;
+    cursor:pointer;
+    margin-left:280px;
+    position:absolute;
+    border:none;
+    color:#fff;
+    text-align:center;
+    border-radius:0 3px 3px 0px;
+}
+.search-button:hover {
+	color:#ff8080;
+	background-color:#8080c0;
+}
+
+.goods-list {
+	max-width:80%;
+	height:600px;
+	border:1px solid red;
+	margin:0 auto;
+	
+}
+
+.active {
+	color:#333;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+	background-color: #0da944;
+}

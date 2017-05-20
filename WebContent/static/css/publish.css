@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+.goodsinfo {
+	margin:100px 400px;;
+	width:40%;
+	height:600px;
+}
+.info-list {
+	
+}
+.info-list li{
+    padding:10px;
+}

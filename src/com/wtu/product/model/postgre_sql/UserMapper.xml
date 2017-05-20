@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wtu.product.model.User">
+  
+  <resultMap id="shoppingAddressMap" type="ShoppingAddress" >
+    <id column="id" property="addressId"/>
+    <result column="address" property="address"/>
+    <result column="modified" property="updateTime"/>
+  </resultMap>
+  <resultMap id="ShoppingTypeMap" type="ShoppingType" >
+    <id column="type_id" property="typeId"/>
+    <result column="type_name" property="typeName"/>
+    <result column="modified" property="updateTime"/>
+  </resultMap>
+  <resultMap id="userMap" type="User" >
+    <id column="user_id" property="userId"/>
+    <result column="user_name" property="userName"/>
+    <result column="password" property="password"/>
+    <result column="phone" property="phone"/>
+    <result column="sex" property="sex"/>
+    <result column="role" property="role"/>
+    <result column="avatar" property="avatar"/>
+    <result column="update_time" property="updateTime"/>
+    <result column="identify_id" property="identifyId"/>
+    <result column="business_address" property="businessAddress"/>
+    <result column="business_descripe" property="businessDescripe"/>
+    <collection property="shoppingAddress" column="user_id" select="Select_Shopping_Address"/>
+    <collection property="types" column="user_id" select="Select_Types"/>
+  </resultMap>
+  
+  <select id="Select_Shopping_Address" resultMap="shoppingAddressMap">
+     <![CDATA[
+     SELECT 
+         id,address,modified 
+     FROM 
+         address
+     where 
+         user_id=#{user_id}
+     ]]>
+  </select>
+  
+  <select id="Select_Types" resultMap="ShoppingTypeMap">
+     <![CDATA[
+     SELECT 
+         a.type_id,a.type_name,a.modified 
+     FROM 
+         good_type as a,user_good_type as b
+     where 
+         a.type_id = b.good_type_id
+     AND
+         b.user_id=#{user_id}
+     ]]>
+  </select>
+  
+  <insert id="createUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+       <![CDATA[
+           INSERT INTO
+               user(user_name,password,phone,sex,role,update_time)
+           VALUES
+               (#{userName}, #{password}, #{phone}, #{sex}, #{role}, Now())
+       ]]>
+  </insert>
+  
+  <select id="getUserByName" parameterType="String" resultMap="userMap">
+      <![CDATA[
+          SELECT
+              user_id,user_name,password,role,phone,avatar,sex,business_address,update_time,identify_id,business_descripe
+          FROM
+              user
+          WHERE
+              user_name = #{userName}
+          AND
+              is_deleted = 0
+      ]]>
+  </select>
+  
+  <select id="queryAllUser" resultMap="userMap" parameterType="map">
+        <![CDATA[
+            SELECT
+              user_id,user_name,password,role,phone,avatar,sex,business_address,update_time,identify_id,business_descripe
+            FROM
+              user
+            WHERE 
+                is_deleted = 0
+            ORDER BY
+                modified DESC
+            LIMIT
+                #{pageSize}
+            OFFSET
+                #{offset}
+        ]]>
+   </select>
+   
+   <select id="getUserById" parameterType="int" resultMap="userMap">
+      <![CDATA[
+          SELECT
+              user_id,user_name,password,role,phone,avatar,sex,business_address,update_time,identify_id,business_descripe
+          FROM
+              user
+          WHERE
+              user_id = #{userName}
+          AND
+              is_deleted = 0
+      ]]>
+  </select>
+  
+  <select id="getUserCount" resultType="Integer">
+        <![CDATA[
+            SELECT
+                count(id)
+            FROM
+                user
+            WHERE 
+                is_deleted = 0  
+        ]]>
+   </select>
+   
+   <update id="updateBusiness" parameterType="User">
+      <![CDATA[
+          UPDATE 
+              user
+          SET 
+              role = #{role}, identify_id = #{identifyId}, business_address = #{businessAddress}, business_descripe = #{businessDescripe}, update_time = #{updateTime}
+          WHERE 
+              user_id = #{userId}
+      ]]>
+  </update>
+  <insert id="addBusinessGoodsType" parameterType="map">
+       <![CDATA[
+           INSERT INTO
+               user_good_type(user_id,good_type_id,modified)
+           VALUES
+               (#{userId}, #{typeId}, Now())
+       ]]>
+  </insert>
+  
+  <update id="deleteUser" parameterType="int">
+      <![CDATA[
+          UPDATE 
+              user 
+          SET 
+              is_deleted=1
+          WHERE user_id = #{id}
+      ]]>
+  </update>
+  
+  <update id="updateUser" parameterType="User">
+      <![CDATA[
+          UPDATE user
+          SET password = #{password}, gender = #{gender}, email = #{email}, address = #{address}, fulle_name = #{fullName}, telephone_number = #{phone}
+          WHERE pk_id = #{id}
+      ]]>
+  </update>
+  <update id="updateUserNoPassword" parameterType="User">
+      <![CDATA[
+          UPDATE oes.users 
+          SET gender = #{gender}, email = #{email}, address = #{address}, fulle_name = #{fullName}, telephone_number = #{phone}
+          WHERE pk_id = #{id}
+      ]]>
+  </update>
+</mapper>
