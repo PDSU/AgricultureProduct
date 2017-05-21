@@ -42,7 +42,7 @@
   <select id="Select_Types" resultMap="ShoppingTypeMap">
      <![CDATA[
      SELECT 
-         a.type_id,a.type_name,a.modified 
+         a.type_id,a.type_name,a.modifid as modified
      FROM 
          good_type as a,user_good_type as b
      where 
@@ -68,7 +68,7 @@
           FROM
               user
           WHERE
-              user_name = #{userName}
+              phone = #{userName}
           AND
               is_deleted = 0
       ]]>

@@ -9,6 +9,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import com.wtu.product.dao.GoodsDao;
 import com.wtu.product.model.Goods;
 import com.wtu.product.model.Pagination;
+import com.wtu.product.model.ProductDescripe;
 import com.wtu.product.model.ProductType;
 import com.wtu.product.model.TypeGroup;
 
@@ -56,6 +57,11 @@ public class GoodsDaoImpl extends SqlSessionDaoSupport implements GoodsDao{
 	@Override
 	public List<TypeGroup> getAllTypeGroup() {
 		return getSqlSession().selectList(ProductType.class.getName() + ".getTypeGroups");
+	}
+
+	@Override
+	public List<ProductDescripe> getDescripeByProductType(Integer productTypeId) {
+		return getSqlSession().selectList(ProductDescripe.class.getName() + ".getProductDescripe",productTypeId);
 	}
 
 

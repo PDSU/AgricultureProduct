@@ -18,74 +18,7 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body id="top">
-    <div style="background: #DDD;">
-        <div class="container">
-            <div class="row" style="margin-top:10px;">
-                <div class="col-md-1">
-                    <span>所在地:</span>
-                </div>
-                <div class="col-md-1" style="margin-left:-40px;">
-                   <select>
-                       <option>湖北</option>
-                       <option>河南</option>
-                   </select>
-                </div>
-                <div class="col-md-3" style="margin-left:-23px;">
-                    <span style="color:#F47A11">你好，欢迎来到惠农农产品交易平台</span>
-                </div>
-                <div class="col-md-1" style="margin-left:-55px;">
-                    <span><a href="#" style="color:#000">请登陆</a></span>
-                </div>
-                <div class="col-md-1" style="margin-left:-41px;">
-                    <span><a href="#" style="color:#000">免费注册</a></span>
-                </div>
-                <div class="col-md-2 pull-right">
-                    <ul class="list-inline">
-                        <li style="margin-left:26px;">我的惠农</li>
-                        <li style="margin-left:5px;">联系我们</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <img src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/images/logo.jpg"></img>
-            </div>
-            <div class="col-md-2 pull-right" style="margin-right:-33px;margin-top:58px;">
-                <a class="btn btn-success" href="#">
-                    <i class="glyphicon glyphicon-shopping-cart icon-white">我的购物车</i>
-                </a>
-            </div>
-            <div class="col-md-4 pull-right" style="margin-right:-23px;margin-top:29px;">
-                <div class="col-md-12">
-                    <ul class="list-inline">
-                        <li>供应</li>
-                        <li>供应商</li>
-                        <li>采购</li>
-                        <li>资讯</li>
-                    </ul>
-                </div>
-                <div class="col-md-12">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="输入货品名称" aria-describedby="basic-addon2">
-                        <span class="input-group-addon" id="basic-addon2" style="background:#5CB85C;color:#FFF">搜索</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div style="background: #009237;">
-        <div class="container">
-            <ul class="nav nav-pills">
-                <li class="active" style="width:194px;text-align:center;background-color: #0da944;"><a href="#" style="color:#FFF">惠农市场</a></li>
-                <li><a href="#" style="color:#FFF;width:110px;text-align:center;">供应大厅</a></li>
-                <li><a href="#" style="color:#FFF;width:110px;text-align:center;">采购大厅</a></li>
-            </ul>
-        </div>
-    </div>
+    <jsp:include page="top.jsp"></jsp:include>
     <div class="container">
         <div class="row">
             <div class="col-md-2" style="background:#F8F8F8;height:430px;margin-left:15px;">

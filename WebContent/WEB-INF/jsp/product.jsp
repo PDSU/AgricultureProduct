@@ -11,14 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>惠农网</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/css/main.css" rel="stylesheet">
     <link href="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/css/index.css" rel="stylesheet">
     <script type="text/javascript" src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL) %>/static/js/lib/jquery-3.1.1.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript" src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL) %>/static/js/jquery.imagezoom.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-<div style="background: #DDD;">
+    <div style="background: #DDD;">
         <div class="container">
             <div class="row" style="margin-top:10px;">
                 <div class="col-md-1">
@@ -34,10 +33,10 @@
                     <span style="color:#F47A11">你好，欢迎来到惠农农产品交易平台</span>
                 </div>
                 <div class="col-md-1" style="margin-left:-55px;">
-                    <span><a href="#" style="color:#000">请登陆</a></span>
+                    <span><a href="<%=PathUtil.getFullPath("home/login")%>" style="color:#000">请登陆</a></span>
                 </div>
                 <div class="col-md-1" style="margin-left:-41px;">
-                    <span><a href="#" style="color:#000">免费注册</a></span>
+                    <span><a href="<%=PathUtil.getFullPath("user/register")%>" style="color:#000">免费注册</a></span>
                 </div>
                 <div class="col-md-2 pull-right">
                     <ul class="list-inline">
@@ -51,7 +50,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <img src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/images/logo.jpg"></img>
+                <a href="<%=PathUtil.getFullPath("home/init-data")%>"><img src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/images/logo.jpg"></img></a>
             </div>
             <div class="col-md-2 pull-right" style="margin-right:-33px;margin-top:58px;">
                 <a class="btn btn-success" href="#">
@@ -205,6 +204,47 @@
                             <button class="btn btn-large btn-primary" style="width:100px;margin-left:-15px;background-color:#F57A11;border-color:#F57A11;">
                                 加入购物车
                             </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div style="border: 1px solid #EEE;">
+                        <img class="img-circle" src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/images/test13.JPEG" alt="头像" style="width:80px;height:80px;margin-left:146px;margin-top:10px;"/>
+                        <h4 style="margin-left:163px;">何昌明</h4>
+                        <div style="margin-left:108px;">
+                            <span class="label label-info">批发商</span>
+                            <span class="label label-info">种植户</span>
+                            <span class="label label-info">采购商</span>
+                        </div>
+                        <hr>
+                        <img src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/images/personal-yes.png" style="width:24px;height:24px;margin-left:178px;margin-top:-2px;">
+                        <h5 style="margin-left:161px;">实名认证</h5>
+                        <hr>
+                        <button class="btn" style="background-color:#FE500B;color:#FFF;margin-left:148px;margin-bottom:29px;margin-top:12px;">拨打电话</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="tabbable" style="border: 1px solid #EEE;">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1" data-toggle="tab">商品详情</a></li>
+                            <li><a href="#tab2" data-toggle="tab">评价</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab1">
+                                <p style="margin-left:20px;margin-top:20px;">脆皮金桔清甜可口 皮脆肉鲜嫩 送礼佳品 不打催黄不打膨胀素 买得放心吃得放心 好山好水好果苗 欢迎您的来电 15877270051 </p>
+                                <div>
+                                    <img src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/images/juzi.jpg" style="margin-left:20px;margin-top:0px;">
+                                </div>
+                                <div>
+                                    <img src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/images/zhuzi2.jpg" style="margin-left:20px;margin-top:10px;">
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab2">
+                                <p>Howdy, I'm in Section 2.</p>
+                                <br><br><br><br><br><br><br><br><br><br><br><br>
+                            </div>
                         </div>
                     </div>
                 </div>

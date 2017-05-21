@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wtu.product.model.ProductDescripe">
+  
+  <resultMap id="descripeValueMap" type="ProductDescripeValue" >
+    <id column="pk_id" property="id"/>
+    <result column="value" property="value"/>
+    <result column="modified" property="updateTime"/>
+  </resultMap>
+  <resultMap id="descripeMap" type="ProductDescripe" >
+    <id column="pk_id" property="id"/>
+    <result column="descripe" property="descripe"/>
+    <result column="modified" property="updateTime"/>
+    <collection property="values" column="descripe_product_type_id" select="Select_Descripe_Value"/>
+  </resultMap>
+  
+  <select id="Select_Descripe_Value" resultMap="descripeValueMap">
+     <![CDATA[
+     SELECT 
+         pk_id,value,modified 
+     FROM 
+         descripe_values
+     where 
+         descripe_id = #{descripe_id}
+     ]]>
+  </select>
+  
+  <select id="getProductDescripe" parameterType="int" resultMap="descripeMap">
+      <![CDATA[
+          SELECT
+              b.pk_id,b.descripe,b.modified,a.pk_id as descripe_product_type_id
+          FROM
+              descripe_product_type as a,product_type_descripe as b
+          WHERE
+              a.descripe_id=b.pk_id
+          AND
+              a.product_type_id = #{typeId}
+      ]]>
+  </select>
+</mapper>

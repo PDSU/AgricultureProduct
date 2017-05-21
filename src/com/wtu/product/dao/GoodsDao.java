@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.wtu.product.model.Goods;
 import com.wtu.product.model.Pagination;
+import com.wtu.product.model.ProductDescripe;
 import com.wtu.product.model.TypeGroup;
 
 public interface GoodsDao {
@@ -13,4 +14,5 @@ public interface GoodsDao {
 	public Integer getGoodsCount(String keyword);
 	public Integer getGoodsCountByUserId(Integer userId);
 	public List<TypeGroup> getAllTypeGroup();
+	public List<ProductDescripe> getDescripeByProductType(Integer productTypeId);
 }

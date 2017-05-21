@@ -5,6 +5,7 @@ import java.util.List;
 import com.wtu.product.dao.GoodsDao;
 import com.wtu.product.model.Goods;
 import com.wtu.product.model.Pagination;
+import com.wtu.product.model.ProductDescripe;
 import com.wtu.product.model.TypeGroup;
 import com.wtu.product.service.GoodsService;
 
@@ -40,6 +41,12 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public List<TypeGroup> getAllTypeGroup() {
 		return goodsDao.getAllTypeGroup();
+	}
+
+
+	@Override
+	public List<ProductDescripe> getDescripeByProductType(Integer productTypeId) {
+		return goodsDao.getDescripeByProductType(productTypeId);
 	}
 
 }

@@ -24,7 +24,7 @@
                 <a href="<%=PathUtil.getFullPath("home/init-data")%>"><img src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/images/logo1.jpg"></img></a>
             </div>
             <div class="col-md-6" style="margin-top:-5px;margin-left:-14px;">
-                <h4 style="margin-bottom:0px;">用户登陆</h4>
+                <h4 style="margin-bottom:0px;">用户注册</h4>
                 <small style="margin-top:-10px;">客服热线:5558563</small>
             </div>
         </div>
@@ -64,35 +64,37 @@
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <img style="margin-top:8px;" src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/images/background.jpg"></img>
-        </div>
-        <div class="col-md-6" style="margin-top:75px;">
-            <div style="border: 1px solid #EEE;width:350px;margin-left:37px;">
-                <div class="row">
-                    <h3 class="text-center">登陆</h3>
-                </div>
-                <hr>
-                <form action="<%=PathUtil.getFullPath("user/login")%>" method="post">
-                    <div class="input-prepend" style="margin-left:75px;">
-                        <span><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" style="width:180px;height:37px;" placeholder="手机号" id="loginName" name="userName"/>
-                    </div>
-                    <div class="input-prepend" style="margin-left:75px;margin-top:10px;">
-                        <span><i class="glyphicon glyphicon-lock"></i></span>
-                        <input type="password" style="width:180px;height:37px;" placeholder="密码" id="password" name="password"/>
-                    </div>
-                    <button class="btn btn-success" style="margin-left:75px;margin-top:22px;width:200px;" type="submit">立即登陆</button>
-                </form>
-                <div class="col-md-12" style="margin-top:2px;">
-                    <a href="<%=PathUtil.getFullPath("user/register")%>" class="pull-left" style="margin-left:61px;">免费注册</a>
-                    <a href="#" class="pull-right" style="margin-right:55px;">忘记密码</a>
-                </div>
-                <br><br><br><br>
-            </div>
-        </div>
-    </div>
-</div>
+   <div style="margin-left: 320px;margin-top: 85px;">
+       <form action="<%=PathUtil.getFullPath("user/register")%>" method="post">
+           <div class="row">
+	           <div class="input-group">
+		            <span class="input-group-addon" style="width: 110px;height: 50px;font-size: 18px">手机号码</span>
+		            <input class="form-control" type="text" placeholder="请输入手机号" maxlength="11" style="width: 326px;height: 50px;font-size: 18px" name="phone">
+		        </div>
+	        </div>
+	        <div class="row" style="margin-top: 10px;">
+		        <div class="input-group">
+		            <span class="input-group-addon" style="width: 110px;height: 50px;font-size: 18px">登陆密码</span>
+		            <input class="form-control" type="password" placeholder="请设置登录密码" maxlength="11" style="width: 326px;height: 50px;font-size: 18px" name="password">
+		        </div>
+	        </div>
+	        <div class="row" style="margin-top: 10px;">
+		        <div class="input-group">
+		            <span class="input-group-addon" style="width: 110px;height: 50px;font-size: 18px">确认密码</span>
+		            <input class="form-control" type="password" placeholder="请重新输入登录密码" maxlength="11" style="width: 326px;height: 50px;font-size: 18px">
+		        </div>
+	        </div>
+	        <div class="row" style="margin-top: 10px;">
+		        <div class="input-group">
+		            <span class="input-group-addon" style="width: 110px;height: 50px;font-size: 18px">您的姓名</span>
+		            <input class="form-control" type="text" placeholder="请输入您的姓名" maxlength="11" style="width: 326px;height: 50px;font-size: 18px" name="user_name">
+		        </div>
+	        </div>
+	        <div class="row" style="margin-top: 10px;">
+	            <button class="btn" type="submit" style="width: 436px;height: 50px;background-color: #ff500b">免费注册</button>
+	        </div>
+       </form>
+     </div>
+  </div>
 </body>
 </html>

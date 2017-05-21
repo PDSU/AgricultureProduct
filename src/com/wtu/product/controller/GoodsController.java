@@ -1,5 +1,7 @@
 package com.wtu.product.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wtu.product.model.Goods;
+import com.wtu.product.model.ProductDescripe;
 import com.wtu.product.model.User;
 import com.wtu.product.service.GoodsService;
 import com.wtu.product.util.ImageUpLoad;
@@ -57,6 +60,8 @@ public class GoodsController extends BaseController {
     public ModelAndView publishGoods(@PathVariable String typeId) {
 	    ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("products");
+        List<ProductDescripe> descripeByProductType = goodsService.getDescripeByProductType(Integer.parseInt("1"));
+        this.addSession("descripeByProductType", descripeByProductType);
         return modelAndView;
 	}
 }

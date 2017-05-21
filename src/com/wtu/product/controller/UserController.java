@@ -48,7 +48,9 @@ public class UserController extends BaseController {
         Map<String,String> message = new HashMap<String, String>();
         try {
             User user = null;
+            System.out.println(userName+":"+password);
             user = userService.login(userName, password);
+            System.out.println(user);
             user.setPassword("");
             this.addSession("USER", user);
             if (!StringUtil.isEmpty(queryString)) {
@@ -96,13 +98,20 @@ public class UserController extends BaseController {
         modelAndView.setView(this.getRedirectView("page/home/init-data"));
         return modelAndView;
     }
+    
+   //跳向注册页面
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public ModelAndView register() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("register");
+        return modelAndView;
+    }
 
     //注册
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView userRegister(
                                     @RequestParam(value = "phone", defaultValue = "") String phone,
                                     @RequestParam(value = "user_name", defaultValue = "") String userName,
-                                    @RequestParam(value = "sex", defaultValue = "") String sex,
                                     @RequestParam(value = "password", defaultValue = "") String password
                                     ) {
         ModelAndView modelAndView = new ModelAndView();
@@ -110,13 +119,11 @@ public class UserController extends BaseController {
         user.setPhone(phone);
         user.setUserName(userName);
         user.setPassword(MD5Util.getEncryptPassword(password));
-        user.setSex(sex);
         user.setRole("1");
         userService.createUser(user);
         this.addSession("FlahMessage", "注册成功!");
         modelAndView.addObject("FlahMessage", "注册成功!");
-        this.addSession("hiddens", 1);
-        modelAndView.setView(this.getRedirectView("page/home/init-data"));
+        modelAndView.setView(this.getRedirectView("page/home/login"));
         return modelAndView;
     }
     

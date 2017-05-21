@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
             throw parameterException;
         }
         User user = userDao.getUserByName(userName);
+        System.out.println(user);
         if (user == null) {
             logger.info(Constant.ERROR);
             throw new ServiceException(Constant.NAME_ERROR_CODE, Constant.ERROR);
