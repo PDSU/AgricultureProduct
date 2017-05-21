@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wtu.product.model.Goods;
 import com.wtu.product.model.Pagination;
+import com.wtu.product.model.TypeGroup;
 import com.wtu.product.model.User;
 import com.wtu.product.service.GoodsService;
 
@@ -31,6 +32,8 @@ public class HomeController extends BaseController {
 		User user = (User)this.getSession("USER");
 		Pagination pagination = new Pagination();
 		goodsList = goodsService.getGoodsListByUserId(pagination, 3);
+		List<TypeGroup> allTypeGroup = goodsService.getAllTypeGroup();
+		this.addSession("TypeGroup", allTypeGroup);
 		this.addSession("GOODSLIST", goodsList);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");

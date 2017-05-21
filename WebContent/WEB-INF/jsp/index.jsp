@@ -12,7 +12,9 @@
     <title>惠农</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/css/home.css" rel="stylesheet">
+    <link href="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/css/font-awesome.css" rel="stylesheet">
     <script type="text/javascript" src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL) %>/static/js/lib/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL) %>/static/js/google-maps.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body id="top">
@@ -87,125 +89,53 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2" style="background:#F8F8F8;height:430px;margin-left:15px;">
-                <div class="panel-group table-responsive" role="tablist">
-                    <div class="panel panel-primary leftMenu" style="background:#F8F8F8;border-color:#F8F8F8;">
-                        <div class="panel-heading" id="collapseListGroupHeading1" data-toggle="collapse" data-target="#collapseListGroup1" role="tab" style="background:#F8F8F8;border-color:#F8F8F8;">
-                            <h4 class="panel-title" style="color:#000">
-                                                                                                 水果蔬菜
-                                <span class="glyphicon glyphicon-chevron-down right"></span>
-                            </h4>
-                        </div>
-                        <div id="collapseListGroup1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading1">
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <button class="menu-item-left" data-target="test2.html">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>group1-1
-                                    </button>
-                                </li>
-                                <li class="list-group-item">
-                                    <button class="menu-item-left">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>group1-2
-                                    </button>
-                                </li>
-                                <li class="list-group-item">
-                                    <button class="menu-item-left">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>group1-3
-                                    </button>
-                                </li>
-                                <li class="list-group-item">
-                                    <button class="menu-item-left">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>group1-4
-                                    </button>
-                                </li>
-                                <li class="list-group-item">
-                                    <button class="menu-item-left">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>group1-5
-                                    </button>
-                                </li>
-                                <li class="list-group-item">
-                                    <button class="menu-item-left">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>group1-6
-                                    </button>
-                                </li>
-                                <li class="list-group-item">
-                                    <button class="menu-item-left">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>group1-7
-                                    </button>
-                                </li>
-                                <li class="list-group-item">
-                                    <button class="menu-item-left">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>group1-8
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="panel panel-primary leftMenu" style="background:#F8F8F8;border-color:#F8F8F8;">
-                        <div class="panel-heading" id="collapseListGroupHeading2" data-toggle="collapse" data-target="#collapseListGroup2" role="tab" style="background:#F8F8F8;border-color:#F8F8F8;">
-                            <h4 class="panel-title" style="color:#000;">
-                                                                                                畜牧水产
-                                <span class="glyphicon glyphicon-chevron-down right"></span>
-                            </h4>
-                        </div>
-                        <div id="collapseListGroup2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading2">
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <button class="menu-item-left">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>group2-1
-                                    </button>
-                                </li>
-                                <li class="list-group-item">
-                                    <button class="menu-item-left">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>group2-2
-                                    </button>
-                                </li>
-                                <li class="list-group-item">
-                                    <button class="menu-item-left">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>group2-3
-                                    </button>
-                                </li>
-                                <li class="list-group-item">
-                                    <button class="menu-item-left">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>group2-4
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="panel panel-primary leftMenu" style="background:#F8F8F8;border-color:#F8F8F8;">
-                        <div class="panel-heading" id="collapseListGroupHeading3" data-toggle="collapse" data-target="#collapseListGroup3" role="tab" style="background:#F8F8F8;border-color:#F8F8F8;">
-                            <h4 class="panel-title" style="color:#000;">
-                                                                                                粮油米面
-                                <span class="glyphicon glyphicon-chevron-down right"></span>
-                            </h4>
-                        </div>
-                        <div id="collapseListGroup3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading3">
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <button class="menu-item-left">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>
-                                        <a href="<%=PathUtil.getFullPath("home/products")%>">group3-1</a>
-                                    </button>
-                                </li>
-                                <li class="list-group-item">
-                                    <button class="menu-item-left">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>group3-2
-                                    </button>
-                                </li>
-                                <li class="list-group-item">
-                                    <button class="menu-item-left">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>group3-3
-                                    </button>
-                                </li>
-                                <li class="list-group-item">
-                                    <button class="menu-item-left">
-                                        <span class="glyphicon glyphicon-triangle-right"></span>group3-4
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <div class="content">
+                   <ul class="nav nav-tabs nav-stacked vertical-nav" style="height:429px;">
+                   <li class="active"><a href="#"><span class="glyphicon glyphicon-user" style="margin-right:10px;"></span>我的关注<span class="glyphicon glyphicon-chevron-right" style="margin-left:10px;"></span></a></li>
+                   <c:forEach items="${TypeGroup}" var="n" begin="0" end="1" step="1" varStatus="tg">
+                       <c:if test="${tg.index==0}">
+	                     <li><a href="${n.id} }"><span class="glyphicon glyphicon-leaf" style="margin-right:10px;"></span>${n.group}<span class="glyphicon glyphicon-chevron-right" style="margin-left:10px;"></span></a>
+	                         <ul class="nav nav-tabs nav-stacked">
+	                             <li>
+	                                 <div style="margin-left:-110px;">
+	                                     <dl class="dl-horizontal">
+	                                         <c:forEach items="${n.goodsType}" var="m">
+	                                             <dt>${m.type}</dt>
+	                                          <dd>
+	                                              <c:forEach items="${m.productTypes}" var="z">
+	                                                  <a href="<%=PathUtil.getFullPath("goods/products/")%>${z.id }">${z.type }</a>
+	                                              </c:forEach>
+	                                          </dd>
+	                                         </c:forEach>
+	                                     </dl>                              
+	                                 </div>
+	                             </li>
+	                         </ul>
+	                     </li>
+                       </c:if>
+                   </c:forEach>
+                   <c:forEach items="${TypeGroup}" var="n" begin="1" step="1" varStatus="tg">
+                    <li><a href="${n.id} }"><span class="glyphicon glyphicon-leaf" style="margin-right:10px;"></span>${n.group}<span class="glyphicon glyphicon-chevron-right" style="margin-left:10px;"></span></a>
+                        <ul class="nav nav-tabs nav-stacked">
+                            <li>
+                                <div style="margin-left:-110px;">
+                                    <dl class="dl-horizontal">
+                                        <c:forEach items="${n.goodsType}" var="m">
+                                            <dt>${m.type}</dt>
+                                         <dd>
+                                             <c:forEach items="${m.productTypes}" var="z">
+                                                 <a href="<%=PathUtil.getFullPath("goods/products/")%>${z.id }">${z.type }</a>
+                                             </c:forEach>
+                                         </dd>
+                                        </c:forEach>
+                                    </dl>                              
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                   </c:forEach>
+                   </ul>
+               </div>
             </div>
             <div class="col-md-8" style="margin-top:20px;">
                 <div id="myCarousel" class="carousel slide" style="width:697px;">
@@ -275,8 +205,8 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col-md-4">
+        <div class="row" style="margin-top:-16px;">
+            <div class="col-md-4" style="margin-top:-26px;">
                 <div class="panel panel-success" style="width:383px;">
                     <div class="panel-heading" style="background-color:#009237;">
                         <h3 class="panel-title" style="color:#FFF">供应</h3>
@@ -290,7 +220,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" style="margin-top:-26px;">
                 <div class="panel panel-success" style="width:383px;">
                     <div class="panel-heading" style="background-color:#009237;">
                         <h3 class="panel-title" style="color:#FFF">采购</h3>
@@ -304,7 +234,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" style="margin-top:-26px;">
                 <div class="panel panel-success" style="width:383px;">
                     <div class="panel-heading" style="background-color:#009237;">
                         <h3 class="panel-title" style="color:#FFF">最新</h3>
@@ -330,6 +260,7 @@
                 $(this).find("span").toggleClass("glyphicon-chevron-up");
             });
         });
+        $(".vertical-nav").verticalnav({speed: 400,align: "left"});
     </script>
 }
 </body>

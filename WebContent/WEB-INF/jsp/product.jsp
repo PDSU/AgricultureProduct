@@ -86,6 +86,7 @@
             </ul>
         </div>
     </div>
+    <div class="container">
     <div class="row" style="margin-left:-15px;margin-right:1px;margin-top:10px;">
         <div class="col-md-12">
             <div class="row">

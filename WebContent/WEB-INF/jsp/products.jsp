@@ -86,6 +86,7 @@
             </ul>
         </div>
     </div>
+    <div class="container">
     <div class="row" style="margin-top:10px;">
         <div class="col-md-12">
             <img src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/images/test6.jpg" style="height:85px;"></img>

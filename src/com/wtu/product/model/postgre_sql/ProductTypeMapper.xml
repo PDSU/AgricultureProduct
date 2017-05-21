@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wtu.product.model.ProductType">
+  
+  <resultMap id="productTypeMap" type="ProductType" >
+    <id column="pk_id" property="id"/>
+    <result column="name" property="type"/>
+    <result column="modified" property="updateTime"/>
+  </resultMap>
+  <resultMap id="goodsTypeMap" type="GoodsType" >
+    <id column="type_id" property="id"/>
+    <result column="type_name" property="type"/>
+    <result column="modified" property="updateTime"/>
+    <collection property="productTypes" column="type_id" select="Select_Product_Types"/>
+  </resultMap>
+  <resultMap id="typeGroupMap" type="TypeGroup" >
+    <id column="pk_id" property="id"/>
+    <result column="name" property="group"/>
+    <result column="modified" property="updateTime"/>
+    <collection property="goodsType" column="pk_id" select="Select_Goods_Type"/>
+  </resultMap>
+  
+  <select id="Select_Product_Types" resultMap="productTypeMap">
+     <![CDATA[
+     SELECT 
+         pk_id,name,modified 
+     FROM 
+         product_type
+     where 
+         goods_type=#{type_id}
+     ]]>
+  </select>
+  
+  <select id="Select_Goods_Type" resultMap="goodsTypeMap">
+     <![CDATA[
+     SELECT 
+         type_id,type_name,modifid as modified 
+     FROM 
+         good_type
+     where 
+         group_id=#{pk_id}
+     ]]>
+  </select>
+  
+  <select id="getTypeGroups" resultMap="typeGroupMap">
+      <![CDATA[
+          SELECT
+              pk_id,name,modified
+          FROM
+              type_group
+      ]]>
+  </select>
+</mapper>

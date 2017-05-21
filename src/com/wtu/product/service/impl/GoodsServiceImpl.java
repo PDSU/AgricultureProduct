@@ -5,6 +5,7 @@ import java.util.List;
 import com.wtu.product.dao.GoodsDao;
 import com.wtu.product.model.Goods;
 import com.wtu.product.model.Pagination;
+import com.wtu.product.model.TypeGroup;
 import com.wtu.product.service.GoodsService;
 
 public class GoodsServiceImpl implements GoodsService {
@@ -34,5 +35,11 @@ public class GoodsServiceImpl implements GoodsService {
         List<Goods> goodsList = goodsDao.queryGoodsByUserId(pagination, userId);
         return goodsList;
     }
+
+
+	@Override
+	public List<TypeGroup> getAllTypeGroup() {
+		return goodsDao.getAllTypeGroup();
+	}
 
 }
