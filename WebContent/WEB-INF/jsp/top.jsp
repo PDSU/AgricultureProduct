@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.wtu.product.util.SystemPropertiesUtil" %>
 <%@ page import="com.wtu.product.util.PathUtil"%>
+<%@ page import="com.wtu.product.model.User"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -10,11 +11,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>惠农</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/css/lib/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/css/home.css" rel="stylesheet">
     <script type="text/javascript" src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL) %>/static/js/lib/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL) %>/static/js/google-maps.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL) %>/static/js/lib/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
 <div style="background: #DDD;">
@@ -29,15 +30,26 @@
                        <option>河南</option>
                    </select>
                 </div>
-                <div class="col-md-3" style="margin-left:-23px;">
-                    <span style="color:#F47A11">你好，欢迎来到惠农农产品交易平台</span>
-                </div>
-                <div class="col-md-1" style="margin-left:-55px;">
-                    <span><a href="<%=PathUtil.getFullPath("home/login")%>" style="color:#000">请登陆</a></span>
-                </div>
-                <div class="col-md-1" style="margin-left:-41px;">
-                    <span><a href="<%=PathUtil.getFullPath("user/register")%>" style="color:#000">免费注册</a></span>
-                </div>
+                
+                    <% if(request.getSession().getAttribute("USER") == null){ %>
+	                    <div class="col-md-3" style="margin-left:-23px;">
+		                    <span style="color:#F47A11">你好，欢迎来到惠农农产品交易平台</span>
+		                </div>
+		                <div class="col-md-1" style="margin-left:-55px;">
+			                <span><a href="<%=PathUtil.getFullPath("home/login")%>" style="color:#000">请登陆</a></span>
+			            </div>
+			            <div class="col-md-1" style="margin-left:-41px;">
+		                    <span><a href="<%=PathUtil.getFullPath("user/register")%>" style="color:#000">注册</a></span>
+		                </div>
+		            <% } else { %>
+		                <div class="col-md-2" style="margin-left:-23px;">
+		                    <a href="#"><span style="color:#F47A11">你好，${USER.phone}</span></a>
+		                </div>
+		                <div class="col-md-1" style="margin-left:-41px;">
+		                    <span><a href="<%=PathUtil.getFullPath("user/logout")%>" style="color:#000">退出系统</a></span>
+		                </div>
+		      		<%}%>
+		      		<input type="hidden" value="${USER==null?0:USER.role}" id="role"/>
                 <div class="col-md-2 pull-right">
                     <ul class="list-inline">
                         <li style="margin-left:26px;">我的惠农</li>
@@ -80,7 +92,7 @@
         <div class="container">
             <ul class="nav nav-pills">
                 <li class="active" style="width:194px;text-align:center;background-color: #0da944;"><a href="#" style="color:#FFF">惠农市场</a></li>
-                <li><a href="#" style="color:#FFF;width:110px;text-align:center;">供应大厅</a></li>
+                <li><a href="#" style="color:#FFF;width:110px;text-align:center;" id="publish">发布商品</a></li>
                 <li><a href="#" style="color:#FFF;width:110px;text-align:center;">采购大厅</a></li>
             </ul>
         </div>

@@ -48,9 +48,7 @@ public class UserController extends BaseController {
         Map<String,String> message = new HashMap<String, String>();
         try {
             User user = null;
-            System.out.println(userName+":"+password);
             user = userService.login(userName, password);
-            System.out.println(user);
             user.setPassword("");
             this.addSession("USER", user);
             if (!StringUtil.isEmpty(queryString)) {
@@ -106,6 +104,14 @@ public class UserController extends BaseController {
         modelAndView.setViewName("register");
         return modelAndView;
     }
+    
+  //用户升级
+    @RequestMapping(value = "/upgrade", method = RequestMethod.GET)
+    public ModelAndView upgrade() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("upgrade");
+        return modelAndView;
+    }
 
     //注册
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -135,7 +141,11 @@ public class UserController extends BaseController {
                                     @RequestParam(value = "businessDescripe", defaultValue = "") String businessDescripe,
                                     @RequestParam(value = "types", defaultValue = "") String[] types
                                     ) {
-        ModelAndView modelAndView = new ModelAndView();
+        System.out.println(identifyId);
+        System.out.println(businessAddress);
+        System.out.println(businessDescripe);
+        System.out.println(types.toString());
+    	ModelAndView modelAndView = new ModelAndView();
         User user = new User();
         user.setRole("2");
         user.setIdentifyId(Integer.parseInt(identifyId));

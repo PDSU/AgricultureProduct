@@ -47,24 +47,10 @@ public class HomeController extends BaseController {
         return modelAndView;
 	}
 	
-	@RequestMapping(value = "/products", method = RequestMethod.GET)
-    public ModelAndView products() {
-	    ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("products");
-        return modelAndView;
-	}
-	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login() {
 	    ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
-        return modelAndView;
-	}
-	
-	@RequestMapping(value = "/product", method = RequestMethod.GET)
-    public ModelAndView product() {
-	    ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("product");
         return modelAndView;
 	}
 }

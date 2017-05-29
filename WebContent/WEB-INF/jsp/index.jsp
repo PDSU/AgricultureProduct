@@ -10,12 +10,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>惠农</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/css/lib/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/css/home.css" rel="stylesheet">
     <link href="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL)%>/static/css/font-awesome.css" rel="stylesheet">
     <script type="text/javascript" src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL) %>/static/js/lib/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL) %>/static/js/google-maps.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="<%=SystemPropertiesUtil.getPropetiesValueByKey(Constant.STATIC_URL) %>/static/js/lib/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body id="top">
     <jsp:include page="top.jsp"></jsp:include>
@@ -36,7 +36,7 @@
 	                                             <dt>${m.type}</dt>
 	                                          <dd>
 	                                              <c:forEach items="${m.productTypes}" var="z">
-	                                                  <a href="<%=PathUtil.getFullPath("goods/products/")%>${z.id }">${z.type }</a>
+	                                                  <a style="font-size:15px;" href="<%=PathUtil.getFullPath("goods/products/")%>${z.id }">${z.type }</a>
 	                                              </c:forEach>
 	                                          </dd>
 	                                         </c:forEach>
@@ -57,7 +57,7 @@
                                             <dt>${m.type}</dt>
                                          <dd>
                                              <c:forEach items="${m.productTypes}" var="z">
-                                                 <a href="<%=PathUtil.getFullPath("goods/products/")%>${z.id }">${z.type }</a>
+                                                 <a style="font-size:15px;" href="<%=PathUtil.getFullPath("goods/products/")%>${z.id }">${z.type }</a>
                                              </c:forEach>
                                          </dd>
                                         </c:forEach>
@@ -94,18 +94,26 @@
                     <h5>it's time guyu</h5>
                 </div>
                 <div class="col-md-12" style="border: 1px solid #EEE;margin-left:16px;width:204px;">
-                    <div class="row">
-                        <div class="col-md-6 pull-left">
-                            <button class="btn btn-large btn-primary" style="width:100px;background-color:#009237;margin-left:-16px;">
-                                                                                    登陆
-                            </button>
+                    <% if(request.getSession().getAttribute("USER") == null){ %>
+                        <div class="row">
+	                        <div class="col-md-6 pull-left">
+	                            <button class="btn btn-large btn-primary" style="width:100px;background-color:#009237;margin-left:-16px;">
+	                                                                                    登陆
+	                            </button>
+	                        </div>
+	                        <div class="col-md-6">
+	                            <button class="btn btn-large btn-primary" style="width:100px;margin-left:-15px;background-color:#009237;">
+	                                                                                     免费注册
+	                            </button>
+	                        </div>
+	                    </div>
+                    <% } else { %>
+                        <div class="row">
+                            <div class="col-md-12" style="text-align:center;margin-top:3px;">
+                                <a href="#"><span style="color:red;">您好，${USER.userName}</span></a>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <button class="btn btn-large btn-primary" style="width:100px;margin-left:-15px;background-color:#009237;">
-                                                                                     免费注册
-                            </button>
-                        </div>
-                    </div>
+                    <%}%>
                     <div class="row" style="margin-top:30px;">
                         <div class="tabbable">
                             <ul class="nav nav-tabs">
@@ -183,6 +191,44 @@
             </div>
         </div>
     </div>
+    
+    
+    <div class="modal fade" tabindex="-1" role="dialog" id="upgradeModal">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">发布商品提示</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>您还不是卖家，请先升级成为卖家</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	        <a href="<%=PathUtil.getFullPath("user/upgrade")%>" class="btn btn-default">立刻升级</a>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<div class="modal fade" tabindex="-1" role="dialog" id="loginModal">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">登陆提示</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>您还未登陆，请先登陆.....</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	        <a href="<%=PathUtil.getFullPath("home/login")%>" class="btn btn-default">立刻登陆</a>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+		
     <script type="text/javascript">
         $('.carousel').carousel({
           interval: 4000
@@ -194,6 +240,16 @@
             });
         });
         $(".vertical-nav").verticalnav({speed: 400,align: "left"});
+        $("#publish").click(function() {
+        	var role = $("#role").val();
+        	if(role == 0){
+        		$("#loginModal").modal('show');
+        	}else if(role == 1){
+        		$("#upgradeModal").modal('show');
+        	} else{
+        		window.location.href = "/AgricultureProduct/page/goods/publish";
+        	}
+        });
     </script>
 }
 </body>
